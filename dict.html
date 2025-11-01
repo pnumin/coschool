@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비즈니스-기술 용어 사전</title>
+    <!-- Tailwind CSS 로드 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Inter 폰트 적용 */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* 다크 모드 기본 설정 */
+        html.dark {
+            color-scheme: dark;
+        }
+        /* 활성 탭 스타일 */
+        .category-btn.active {
+            background-color: #ffffff; /* white */
+            color: #1d4ed8; /* blue-700 */
+        }
+        .dark .category-btn.active {
+            background-color: #ffffff; /* white */
+            color: #1e3a8a; /* blue-900 */
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+
+    <!-- 상단 고정 헤더 (검색 및 분류) -->
+    <header class="sticky top-0 z-10 bg-blue-700 dark:bg-blue-900 shadow-md p-4 md:p-6">
+        <div class="container mx-auto max-w-4xl">
+            <div class="relative flex justify-center items-center mb-6">
+                <a href="index.html" class="absolute left-0 text-white dark:text-gray-200 hover:text-gray-300 transition-colors p-1 rounded-full hover:bg-blue-600 dark:hover:bg-blue-800" aria-label="Home">
+                    <!-- Home Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                    </svg>
+                </a>
+                <h1 class="text-3xl md:text-4xl font-bold text-center text-white dark:text-gray-100">
+                    비즈니스 & 기술 용어 사전
+                </h1>
+            </div>
+            
+            <!-- 키워드 검색창 -->
+            <div class="relative mb-4">
+                <input 
+                    type="search" 
+                    id="searchInput" 
+                    placeholder="용어 또는 설명 검색..."
+                    class="w-full p-4 pl-10 text-lg bg-white dark:bg-blue-800 border border-gray-300 dark:border-blue-700 rounded-lg outline-none transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-300 focus:border-blue-300 focus:ring-2 focus:ring-blue-300"
+                >
+                <svg class="w-6 h-6 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+
+            <!-- 분류 선택 메뉴 -->
+            <nav>
+                <h2 class="sr-only">분류 선택</h2>
+                <div id="categoryMenu" class="flex flex-wrap justify-center gap-2">
+                    <!-- JavaScript로 채워짐 -->
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 용어 목록 -->
+    <main class="container mx-auto p-4 md:p-8 max-w-4xl">
+        
+        <!-- 용어 정의 리스트 -->
+        <dl id="glossaryList" class="space-y-6">
+            <!-- JavaScript로 채워짐 -->
+        </dl>
+        
+        <!-- 검색 결과 없음 메시지 -->
+        <div id="noResults" class="text-center text-xl text-gray-500 py-10" style="display: none;">
+            검색 결과가 없습니다.
+        </div>
+
+    </main>
+
+    <!-- 다크/라이트 모드 토글 버튼 (기존과 동일) -->
+    <button id="themeToggle" class="fixed bottom-6 right-6 p-3 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 shadow-lg transition-transform hover:scale-110">
+        <svg class="w-6 h-6 hidden" id="themeIconLight" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-6.364-.386l1.591-1.591M3 12H.75m.386-6.364l1.591 1.591" /></svg>
+        <svg class="w-6 h-6 hidden" id="themeIconDark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+    </button>
+
+    <script>
+        // 용어 데이터를 JavaScript 객체로 관리
+        const glossaryData = {
+            "경영 및 사회적 책임": [
+                { term: "상호관세", definition: "특정 국가가 자국 산업 보호 등을 이유로 타국 제품에 관세를 부과할 경우, 상대국도 이에 대응하여 자국 제품에 관세를 부과하는 정책" },
+                { term: "CSR (기업의사회적책임)", definition: "기업 수익의 일부를 사회에 환원시킴으로써 기업의 책임을 대신한다는 개념. 자선활동과 같은 선행으로 취약계층의 요청에 대한 응답 형태로 진행됨. 단순한 이익의 사회적 환원" },
+                { term: "CSV (공유가치창출)", definition: "새로운 가치창출을 통한 사회와 기업의 동반 성장을 유도하며, 사회적 가치, 경제적 가치 및 문화적 가치로써 합리적 배분을 통한 균형성장을 말함. 사회의 근원적 문제점 해결을 꾀하는 경영철학" },
+                { term: "ESG", definition: "환경적 요인(Environmental), 사회적 책임(Social/사회적 가치), 투명경영(Governance)을 뜻하는 CSR과 CSV의 확장 개념. 기업 경영의 필수 요인으로 자리매김 중" },
+                { term: "ESS (중역지원시스템)", definition: "판단, 평가, 통찰력이 절대적으로 요구되는 비일상적인 의사결정을 지원하는 시스템" },
+                { term: "MIS (경영정보시스템)", definition: "조직의 현재 성과 제공, 경영 활동 관리 감독 및 미래의 성과 예측을 지원함" },
+                { term: "데이터 (Data)", definition: "의미 있는 단순한 사실들의 집합" },
+                { term: "정보 (Information)", definition: "해석할 수 있는 의미와 가치를 가진 자료" },
+                { term: "참조무결성 (Integrity)", definition: "관계형 데이터베이스에서 데이터의 정확성과 일관성을 뜻하며, 결손과 부정함이 없음을 보증함" },
+                { term: "데이터 웨어하우스 (DW)", definition: "데이터 추출, 변환, 통합, 요약된 데이터베이스. 데이터의 통합 저장소" },
+                { term: "데이터 마트 (DM)", definition: "소규모로 구축된 데이터웨어하우스" }
+            ],
+            "핀테크 및 금융 기술": [
+                { term: "Fintech (핀테크)", definition: "금융(Finance)과 기술(Technology)의 융복합(convergence)" },
+                { term: "Techfin (테크핀)", definition: "정보기술(IT)을 기반으로, 새로운 금융 서비스를 결합하는 개념" },
+                { term: "간편결제 시스템", definition: "사용자들이 온라인 및 오프라인에서 신속하고 쉽게 결제할 수 있도록 지원하는 전자 결제 방식. 높은 편의성과 보안을 제공" },
+                { term: "로보어드바이저 (Robo-Adviser)", definition: "빅데이터와 인공지능 알고리즘 기반으로 고객에게 온라인으로 자산 배분 포트폴리오를 관리해주는 금융자문 서비스" },
+                { term: "인슈어테크 (InsurTech)", definition: "보험(Insurance)과 기술(Technology)의 합성어로, 기술을 활용해 보험 산업의 효율성과 고객 경험을 향상시키는 것을 목표로 함" },
+                { term: "P2P 금융 플랫폼 (Peer to Peer)", definition: "금융회사의 중개 없이 사적 개인 간에 금융 거래가 체결될 수 있도록 중개하는 금융플랫폼" },
+                { term: "오픈뱅킹 (Open Banking)", definition: "금융 데이터와 서비스를 안전하게 공유할 수 있도록 개방된 표준을 통해 금융 기관과 제3자 간의 협력을 촉진하는 시스템" },
+                { term: "마이데이터 (MyData)", definition: "데이터 관리와 활용 권한이 정보 주체인 개인에게 있음을 강조하는 제도. 개인의 금융정보를 일괄 수집하여 통합 제공함" },
+                { term: "챗봇 (Chatbot)", definition: "자연어 처리(NLP) 기술을 이용해 사람과 대화할 수 있는 소프트웨어 애플리케이션" },
+                { term: "생성형 AI (Generative AI)", definition: "챗GPT와 같이 몇 가지 원리로 자연어 문장을 만들어 내는 능력을 갖춘 AI. 실시간 딥러닝 기반 대화형 인공지능 챗봇 기술" },
+                { term: "Web 3.0", definition: "공정과 자율을 지향하는 탈중앙화 방식의 시맨틱 기술. 지능화된 웹이 원하는 콘텐츠를 제공하는 개인 맞춤화를 지향함" }
+            ],
+            "디지털 전환 및 빅데이터": [
+                { term: "DT/DX (디지털 전환)", definition: "디지털 기술을 기반으로 기업의 조직 문화, 비즈니스 모델 및 산업 생태계를 혁신하고 새로운 가치를 창출하는 과정" },
+                { term: "빅데이터 (Big Data)", definition: "정형, 반정형, 비정형 데이터 모두를 포함하며, 기존의 방법이나 도구로 저장/분석하기 어려운 방대한 양의 데이터. 특징은 3V(Volume, Velocity, Variety) 또는 5V(Value, Variable 포함)로 정의됨" },
+                { term: "ABC", definition: "4차 산업혁명의 핵심 키워드로, AI, Big data, Cloud computing을 의미함" },
+                { term: "ICBM", definition: "4차 산업혁명의 핵심 키워드로, Iot, Cloud computing, Big data, Mobility를 의미함" },
+                { term: "CPS (사이버 물리 시스템)", definition: "컴퓨팅과 물리세계가 융합되어 자동화, 지능화되며, 현실세계와 디지털 사이버세계가 긴밀하게 결합된 시스템" },
+                { term: "디지털 트윈 (Digital Twin)", definition: "시뮬레이션, 머신러닝, 추론을 통하여 의사결정을 돕는 시스템의 가상 모델. 현실 세계의 변화를 반영하도록 실시간 업데이트됨" },
+                { term: "캄테크 (Calm-tech)", definition: "AI, IoT 등 사람들이 인지하지 못한 상태에서 서비스를 제공하는 보이지 않는 배려 기술" }
+            ],
+            "소비자 트렌드 및 마케팅": [
+                { term: "O2O (On-line to Off-line)", definition: "오프라인 상점에서 구경 후, 온라인으로 주문을 유도하는 방식 (오프라인에서 온라인으로 전환)" },
+                { term: "O4O (On-line for Off-line)", definition: "온라인에 축적된 데이터 활용을 통해, 오프라인에서 새로운 비즈니스 모델로 적용하는 전략 (오프라인을 위한 온라인)" },
+                { term: "뉴트로 (New-tro)", definition: "새로운 복고를 뜻하는 용어로, 옛날 감성과 더불어 현대적 아이템의 가치를 부여하는 현상" },
+                { term: "온택트 (Ontact)", definition: "Online + Untact의 합성어로, 온라인을 통한 비대면 시장의 활성화를 뜻하는 개념" },
+                { term: "욜로 (YOLO)", definition: "You only live once의 약어로, 미래에 대한 기대를 접고 이 순간을 사랑하려는 긍정을 추구하는 라이프스타일" },
+                { term: "알파세대 (Alpha Generation)", definition: "2010년~2024년생으로, 순수 Digital Native 세대이며 소비 지형을 바꿀 주역" },
+                { term: "체리슈머 (Cherry-sumers)", definition: "한정된 자원을 극대화하기 위해 최대한 알뜰하게 소비하는 전략적 소비자" },
+                { term: "페르소나 (Persona)", definition: "복수의 가면을 뜻하며, 고객 세분화를 통한 개인 맞춤화 전략으로 양면적이고 초개인화되는 현상" },
+                { term: "CX 유니버스 (Customer eXperience)", definition: "고객 경험(CX) 관리의 확장 개념으로, 고객 만족도를 높이고 충성도까지 이어지게 하는 전략" }
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const categoryMenu = document.getElementById('categoryMenu');
+            const searchInput = document.getElementById('searchInput');
+            const glossaryList = document.getElementById('glossaryList');
+            const noResults = document.getElementById('noResults');
+
+            let currentCategory = '전체'; // 현재 선택된 분류
+
+            // 1. 분류 메뉴 생성
+            function populateCategoryMenu() {
+                const categories = ['전체', ...Object.keys(glossaryData)];
+                categories.forEach(category => {
+                    const button = document.createElement('button');
+                    button.textContent = category;
+                    button.dataset.category = category;
+                    button.className = "category-btn px-4 py-2 font-medium rounded-lg transition-colors text-white bg-blue-500 hover:bg-blue-400 dark:bg-blue-700 dark:hover:bg-blue-600";
+                    if (category === '전체') {
+                        button.classList.add('active'); // '전체'를 기본값으로 활성화
+                    }
+                    categoryMenu.appendChild(button);
+                });
+            }
+
+            // 2. 전체 용어 목록 생성
+            function populateGlossaryList() {
+                glossaryList.innerHTML = ''; // 목록 비우기
+                Object.keys(glossaryData).forEach(category => {
+                    glossaryData[category].forEach(item => {
+                        const entryDiv = document.createElement('div');
+                        entryDiv.className = "term-entry p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800";
+                        entryDiv.dataset.category = category; // 필터링을 위한 카테고리
+                        entryDiv.innerHTML = `
+                            <dt class="text-xl font-bold text-blue-700 dark:text-blue-400">${item.term}</dt>
+                            <dd class="mt-1 text-base md:text-lg">${item.definition}</dd>
+                        `;
+                        glossaryList.appendChild(entryDiv);
+                    });
+                });
+            }
+
+            // 3. 필터링 및 업데이트 함수
+            function updateFilter() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                const termEntries = glossaryList.querySelectorAll('.term-entry');
+                let hasVisibleEntries = false;
+
+                termEntries.forEach(entry => {
+                    const category = entry.dataset.category;
+                    const term = entry.querySelector('dt').textContent.toLowerCase();
+                    const definition = entry.querySelector('dd').textContent.toLowerCase();
+
+                    // 카테고리 일치 여부 확인
+                    const categoryMatch = (currentCategory === '전체' || category === currentCategory);
+                    
+                    // 검색어 일치 여부 확인
+                    const termMatch = (term.includes(searchTerm) || definition.includes(searchTerm));
+
+                    // 둘 다 만족해야 표시
+                    if (categoryMatch && termMatch) {
+                        entry.style.display = '';
+                        hasVisibleEntries = true;
+                    } else {
+                        entry.style.display = 'none';
+                    }
+                });
+
+                // 검색 결과 없음 메시지
+                noResults.style.display = hasVisibleEntries ? 'none' : 'block';
+            }
+
+            // 4. 이벤트 리스너 연결
+            
+            // 분류 메뉴 클릭
+            categoryMenu.addEventListener('click', (e) => {
+                const button = e.target.closest('button');
+                if (button) {
+                    // 모든 버튼에서 'active' 클래스 제거
+                    categoryMenu.querySelectorAll('.category-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // 클릭된 버튼에 'active' 클래스 추가
+                    button.classList.add('active');
+                    currentCategory = button.dataset.category;
+                    
+                    updateFilter(); // 필터 업데이트
+                }
+            });
+
+            // 검색창 입력
+            searchInput.addEventListener('input', updateFilter);
+
+            // -- 초기화 --
+            populateCategoryMenu();
+            populateGlossaryList();
+            // (초기 필터링은 '전체' & 빈 검색어로 자동 적용됨)
+
+
+            // --- 다크/라이트 모드 토글 (기존과 동일) ---
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIconLight = document.getElementById('themeIconLight');
+            const themeIconDark = document.getElementById('themeIconDark');
+            const docElement = document.documentElement;
+
+            function applyTheme() {
+                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    docElement.classList.add('dark');
+                    themeIconLight.classList.remove('hidden');
+                    themeIconDark.classList.add('hidden');
+                } else {
+                    docElement.classList.remove('dark');
+                    themeIconLight.classList.add('hidden');
+                    themeIconDark.classList.remove('hidden');
+                }
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                if (docElement.classList.contains('dark')) {
+                    docElement.classList.remove('dark');
+                    localStorage.theme = 'light';
+                } else {
+                    docElement.classList.add('dark');
+                    localStorage.theme = 'dark';
+                }
+                applyTheme();
+            });
+
+            applyTheme();
+        });
+    </script>
+
+</body>
+</html>
+
+
+
