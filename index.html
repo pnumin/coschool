@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김경민의 금융 포트폴리오</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Inter 폰트 또는 시스템 기본 폰트 사용 */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900 min-h-screen">
+
+    <!-- 헤더 섹션 -->
+    <header class="bg-blue-800 text-white shadow-md">
+        <div class="container mx-auto max-w-5xl p-6 md:p-8 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold">금융 포트폴리오</h1>
+            <p class="text-lg md:text-xl text-blue-100 mt-1">부산대학교 '교과연계형 금융일반' 수강 기록</p>
+        </div>
+    </header>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="container mx-auto max-w-5xl p-6 md:p-8 mt-8">
+
+        <!-- 소개 섹션 (삭제됨) -->
+
+        <!-- 포트폴리오 항목 그리드 -->
+        <section>
+            <!-- <h2 class="text-2xl font-semibold text-blue-900 mb-6">포트폴리오 목차</h2> (삭제됨) -->
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- 카드 1: 금융용어사전 (스타일 변경) -->
+                <div class="bg-teal-50 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-teal-800 mb-3">1. 금융용어사전</h3>
+                        <p class="text-gray-600 mb-4">수업에서 다룬 핵심 금융 용어들을 가나다순으로 정리한 사전입니다. 용어의 정의와 실제 활용 사례를 포함합니다.</p>
+                    </div>
+                    <!-- 
+                        JavaScript를 사용해 같은 페이지 내에서 내용을 보여줍니다.
+                        onclick="showSection(event, 'glossary')"
+                    -->
+                    <a href="dict.html" target="_blank" rel="noopener noreferrer" class="inline-block w-full text-center bg-teal-700 text-white font-semibold py-3 px-5 hover:bg-teal-600 transition-colors duration-300">
+                        내용 보러가기
+                    </a>
+                </div>
+
+                <!-- 카드 2: 교과핵심정리 (복원 및 스타일 변경) -->
+                <div class="bg-indigo-50 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-indigo-800 mb-3">2. 교과핵심정리</h3>
+                        <p class="text-gray-600 mb-4">수업에서 다룬 챕터별 핵심 내용을 요약, 정리했습니다. 주요 개념과 공식을 한눈에 볼 수 있습니다.</p>
+                    </div>
+                    <!-- 
+                        JavaScript를 사용해 같은 페이지 내에서 내용을 보여줍니다.
+                        onclick="showSection(event, 'summary')"
+                    -->
+                    <a href="https://script.google.com/macros/s/AKfycbzFDGc5zoOkxpa6C4emWM7r9iHz-VgNVyGH1D7v3jTKuJlKxKd0diZFbosArxgdpsLq/exec" target="_blank" rel="noopener noreferrer" class="inline-block w-full text-center bg-indigo-700 text-white font-semibold py-3 px-5 hover:bg-indigo-600 transition-colors duration-300">
+                        내용 보러가기
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. 교과 내용 요약 보기 (Full-width) -->
+        <section class="mt-8">
+             <div class="bg-green-50 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between overflow-hidden">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-green-800 mb-3">3. 교과 내용 요약 보기</h3>
+                    <p class="text-gray-600 mb-4">수업에서 사용된 전체 교과 내용을 PDF 파일로 한 번에 확인합니다.</p>
+                </div>
+                <a href="수업자료.pdf" target="_blank" rel="noopener noreferrer" class="inline-block w-full text-center bg-green-700 text-white font-semibold py-3 px-5 hover:bg-green-600 transition-colors duration-300">
+                    수업자료 보기
+                </a>
+            </div>
+        </section>
+
+
+        <!-- 수업소감 섹션 (새로운 위치) -->
+        <section class="mt-10 bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold text-blue-900 mb-6">수업소감</h2>
+            
+            <div class="text-gray-700 leading-relaxed space-y-4">
+                <p>9주라는 시간이 길다면 길고, 짧다면 짧게 느껴집니다. 매주 이른 아침에 시작되는 수업을 듣기 위해 일어나는 것은 1학년인 저에게 솔직히 적지 않은 부담이었습니다. 아침 공기의 쌀쌀함과 싸우며 강의실에 앉을 때면 '내가 잘하고 있는 걸까' 하는 생각도 들었습니다.</p>
+                <p>처음 '금융'이라는 주제는 막연하고 어렵게만 다가왔습니다. 금리, 인플레이션, 투자, 위험 관리 등 뉴스에서나 듣던 용어들은 낯설기만 했습니다. 하지만 교수님의 설명을 하나하나 따라가고, '교과연계형 금융일반'이라는 과목명처럼 우리의 일상과 교과 내용을 연결 지어 생각해보려 노력하면서, 금융이 단순히 돈을 다루는 기술이 아니라 세상을 움직이는 중요한 원리임을 깨닫게 되었습니다.</p>
+                <p>특히 화폐의 시간가치나 위험과 수익률의 관계를 배우면서, 왜 저축을 해야 하는지, 투자는 어떤 원리로 이루어지는지 체계적으로 이해할 수 있었습니다. 9주 동안 꾸준히 아침 수업에 참여하며 쌓아 올린 지식들은, 막연했던 금융에 대한 두려움을 '이해할 수 있는' 지식의 영역으로 바꾸어 주었습니다.</p>
+                <p>물론 9주 만에 금융의 모든 것을 알게 되었다고는 할 수 없습니다. 하지만 이 수업은 앞으로 제가 더 깊이 있는 금융 지식을 탐구하고, 합리적인 경제적 결정을 내리는 데 튼튼한 기초가 되어줄 것이라 확신합니다. 힘들었던 아침을 이겨내고 얻은 '금융에 대한 이해'라는 결실은 그 어떤 잠보다 달콤하게 느껴집니다. 값진 배움의 기회를 주신 교수님과 함께한 학우들에게 감사합니다.</p>
+            </div>
+        </section>
+
+        <!-- 내용 표시 섹션 (처음에는 숨겨져 있음) -->
+        <!-- 
+            이제 이 섹션은 사용되지 않으므로 삭제합니다.
+        <section id="content-display-wrapper" class="mt-10" style="display: none;">
+            <div id="content-display" class="bg-white p-8 rounded-lg shadow-lg">
+                
+                <div id="glossary" class="content-section" style="display: none;">
+                    ... (내용 삭제) ...
+                </div>
+
+                <div id="summary" class="content-section" style="display: none;">
+                    ... (내용 삭제) ...
+                </div>
+                
+                <button onclick="hideSections(event)" class="mt-8 bg-gray-500 text-white font-semibold py-2 px-5 rounded-lg hover:bg-gray-400 transition-colors duration-300">
+                    목차로 돌아가기
+                </button>
+            </div>
+        </section>
+        -->
+
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="text-center p-6 mt-12 text-gray-500 text-sm">
+        <p>&copy; 2025 김경민 (부산대학교). All rights reserved.</p>
+        <p class="mt-1">본 페이지는 '교과연계형 금융일반' 수업의 포트폴리오 목적으로 제작되었습니다.</p>
+    </footer>
+
+    <!-- JavaScript 섹션 (이제 필요 없으므로 삭제) -->
+    <!-- 
+    <script>
+        ... (스크립트 내용 삭제) ...
+    </script>
+    -->
+
+</body>
+</html>
